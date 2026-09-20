@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff0f6">
+  <title>Our 5th Monthsary Puzzle</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<script>
+  // Runs first so a shared link never flashes the setup screen.
+  if (window.__PRESET__ || location.hash.startsWith("#p=")) {
+    document.documentElement.setAttribute("data-skip-intro", "");
+  }
+</script>
+
+<div id="floaties" aria-hidden="true"></div>
+
+<main id="app">
+  <h1 class="title">Happy 5th Monthsary <span class="title-heart">💗</span></h1>
+  <p class="subtitle">a little puzzle for you to solve, babi hehehe</p>
+
+  <!-- Setup -->
+  <section id="intro-screen">
+    <div class="field">
+      <label for="herName">Her name</label>
+      <input type="text" id="herName" placeholder="e.g. Mia" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="yourName">Your name (signs the message — optional)</label>
+      <input type="text" id="yourName" placeholder="e.g. Jc" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="message">Your message (shown once she finishes the puzzle)</label>
+      <textarea id="message">Five months in, and I'd choose every single day of it again. Happy monthsary, Babi. I love you mak mak.</textarea>
+    </div>
+    <div class="field">
+      <label for="photo-pick-btn">Puzzle photo (optional — otherwise I'll design one)</label>
+      <div class="row">
+        <button type="button" class="btn chip" id="photo-pick-btn">Upload a photo</button>
+        <input type="file" id="photoInput" accept="image/*" hidden>
+        <img id="photo-thumb" alt="Selected puzzle photo" hidden>
+        <button type="button" class="link-btn" id="photo-clear" hidden>remove</button>
+      </div>
+    </div>
+    <div class="field">
+      <label id="difficulty-label">Difficulty</label>
+      <div class="row" role="group" aria-labelledby="difficulty-label" id="difficulty">
+        <button type="button" class="btn chip" data-n="3">Easy · 9 pcs</button>
+        <button type="button" class="btn chip" data-n="4">Medium · 16 pcs</button>
+        <button type="button" class="btn chip" data-n="5">Hard · 25 pcs</button>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="start-btn">Preview it myself</button>
+
+    <div class="share">
+      <p class="share-title">keep it a surprise</p>
+      <p class="share-hint">These skip this setup screen for her — she'll land straight on the puzzle, and your message only shows once she finishes it.</p>
+      <div class="row wrap">
+        <button type="button" class="btn btn-ghost" id="make-link-btn">Create surprise link</button>
+        <button type="button" class="btn btn-ghost" id="download-file-btn">Download personalized file</button>
+      </div>
+      <div class="row" id="share-output" hidden>
+        <input type="text" id="share-url" readonly aria-label="Surprise link">
+        <button type="button" class="btn btn-ghost" id="copy-link-btn">Copy</button>
+      </div>
+      <p class="share-note" id="share-note" hidden></p>
+    </div>
+  </section>
+
+  <!-- Puzzle -->
+  <section id="puzzle-screen" hidden>
+    <div class="progress">
+      <div class="progress-track"><div id="progress-fill"></div></div>
+      <div id="progress-label">0 / 0 pieces</div>
+    </div>
+    <div id="stage-outer">
+      <div id="stage"><div id="board"></div></div>
+    </div>
+    <div class="puzzle-actions">
+      <button type="button" class="btn btn-ghost" id="reshuffle-btn">Reshuffle</button>
+      <button type="button" class="btn btn-ghost" id="new-puzzle-btn">New puzzle</button>
+    </div>
+  </section>
+</main>
+
+<div id="complete-overlay" hidden>
+  <div class="love-card" role="dialog" aria-modal="true" aria-labelledby="love-title">
+    <div class="love-heart">💗</div>
+    <h2 id="love-title">You solved it</h2>
+    <div class="love-to" id="love-to"></div>
+    <div class="love-msg" id="love-msg"></div>
+    <div class="love-sign" id="love-sign"></div>
+    <div class="love-actions">
+      <button type="button" class="btn btn-ghost" id="play-again-btn">Play again</button>
+      <button type="button" class="btn btn-ghost" id="close-overlay-btn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
